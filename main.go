@@ -17,7 +17,7 @@ func main() {
 	fmt.Printf("We have a total of %v tickets and %v are still available.\n", tickets, remainingTickets)
 	fmt.Println("Get your your tickets here to attend")
 
-	for {
+	for remainingTickets > 0 {
 		var firstName string
 		var lastName string
 		var email string
@@ -34,6 +34,11 @@ func main() {
 
 		fmt.Println("How many tickets do you want to book? ")
 		fmt.Scan(&userTickets)
+
+		if remainingTickets < userTickets {
+			fmt.Printf("We have only %v tickets, so you can`t book %v tickets\n", remainingTickets, userTickets)
+			continue
+		}
 
 		remainingTickets = remainingTickets - userTickets
 
@@ -55,6 +60,11 @@ func main() {
 		}
 
 		fmt.Printf("These are all first names of our visitors: %v \n", firstNames)
+
+		if remainingTickets == 0 {
+			fmt.Println("Our conference is booked out. Come back next year.")
+			break
+		}
 	}
 
 }
