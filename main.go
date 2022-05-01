@@ -1,6 +1,9 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"strings"
+)
 
 func main() {
 	name := "Go Conference"
@@ -14,32 +17,44 @@ func main() {
 	fmt.Printf("We have a total of %v tickets and %v are still available.\n", tickets, remainingTickets)
 	fmt.Println("Get your your tickets here to attend")
 
-	var firstName string
-	var lastName string
-	var email string
-	var userTickets uint8
+	for {
+		var firstName string
+		var lastName string
+		var email string
+		var userTickets uint8
 
-	fmt.Println("What is your first name? ")
-	fmt.Scan(&firstName)
+		fmt.Println("What is your first name? ")
+		fmt.Scan(&firstName)
 
-	fmt.Println("What is your last name? ")
-	fmt.Scan(&lastName)
+		fmt.Println("What is your last name? ")
+		fmt.Scan(&lastName)
 
-	fmt.Println("What is your email? ")
-	fmt.Scan(&email)
+		fmt.Println("What is your email? ")
+		fmt.Scan(&email)
 
-	fmt.Println("How many tickets do you want to book? ")
-	fmt.Scan(&userTickets)
+		fmt.Println("How many tickets do you want to book? ")
+		fmt.Scan(&userTickets)
 
-	remainingTickets = remainingTickets - userTickets
+		remainingTickets = remainingTickets - userTickets
 
-	bookings = append(bookings, firstName+" "+lastName)
+		bookings = append(bookings, firstName+" "+lastName)
 
-	fmt.Printf(
-		"Thank you %v %v for booking %v tickets. You will recieve a confirmation email at %v\n",
-		firstName, lastName, userTickets, email,
-	)
+		fmt.Printf(
+			"Thank you %v %v for booking %v tickets. You will recieve a confirmation email at %v\n",
+			firstName, lastName, userTickets, email,
+		)
 
-	fmt.Printf("These are all of our bookings: %v \n", bookings)
+		fmt.Printf("%v tickets remaining for %v \n", remainingTickets, name)
+
+		var firstNames []string
+
+		for _, booking := range bookings {
+			var firstName = strings.Fields(booking)[0]
+
+			firstNames = append(firstNames, firstName)
+		}
+
+		fmt.Printf("These are all first names of our visitors: %v \n", firstNames)
+	}
 
 }
