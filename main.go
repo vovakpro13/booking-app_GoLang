@@ -6,6 +6,7 @@ func main() {
 	name := "Go Conference"
 	const tickets uint8 = 50
 	var remainingTickets uint8 = 50
+	var bookings []string
 
 	fmt.Printf("name type is %T, remainingTickets type is %T\n", name, remainingTickets)
 
@@ -32,9 +33,13 @@ func main() {
 
 	remainingTickets = remainingTickets - userTickets
 
+	bookings = append(bookings, firstName+" "+lastName)
+
 	fmt.Printf(
 		"Thank you %v %v for booking %v tickets. You will recieve a confirmation email at %v\n",
 		firstName, lastName, userTickets, email,
 	)
+
+	fmt.Printf("These are all of our bookings: %v \n", bookings)
 
 }
