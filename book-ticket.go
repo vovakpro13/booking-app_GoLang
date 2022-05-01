@@ -3,6 +3,7 @@ package main
 import (
 	"booking-app/helper"
 	"fmt"
+	"strconv"
 )
 
 func bookTicket(
@@ -10,8 +11,16 @@ func bookTicket(
 	userTickets uint8,
 ) {
 	remainingTickets = remainingTickets - userTickets
-	bookings = append(bookings, firstName+" "+lastName)
 
+	userData := make(map[string]string)
+	userData["firstName"] = firstName
+	userData["lastName"] = lastName
+	userData["email"] = email
+	userData["userTickets"] = strconv.FormatUint(uint64(userTickets), 10)
+
+	bookings = append(bookings, userData)
+
+	fmt.Printf("%v \n", bookings)
 	fmt.Printf(
 		"Thank you %v %v for booking %v tickets. You will recieve a confirmation email at %v\n",
 		firstName, lastName, userTickets, email,
