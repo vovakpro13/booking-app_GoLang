@@ -4,6 +4,13 @@ import (
 	"fmt"
 )
 
+type UserData struct {
+	FirstName string
+	LastName  string
+	Email     string
+	Tickets   uint8
+}
+
 const tickets uint8 = 50
 
 func GreetUsers(conference string, remainingTickets uint8) {
@@ -12,11 +19,11 @@ func GreetUsers(conference string, remainingTickets uint8) {
 	fmt.Println("Get your your tickets here to attend")
 }
 
-func GetFirstNames(bookings []map[string]string) []string {
+func GetFirstNames(bookings []UserData) []string {
 	var firstNames []string
 
 	for _, booking := range bookings {
-		firstNames = append(firstNames, booking["firstName"])
+		firstNames = append(firstNames, booking.FirstName)
 	}
 
 	return firstNames

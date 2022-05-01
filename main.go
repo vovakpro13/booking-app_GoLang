@@ -8,7 +8,7 @@ import (
 const Conference = "Go Conference"
 
 var remainingTickets uint8 = 50
-var bookings = make([]map[string]string, 0)
+var bookings = make([]helper.UserData, 0)
 
 func main() {
 	helper.GreetUsers(Conference, remainingTickets)
